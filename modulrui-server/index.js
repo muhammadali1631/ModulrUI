@@ -25,9 +25,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
 app.use('/api/component', componentRouter)
 
-const PORT = process.env.PORT;
 
-app.listen(PORT, ()=>{
-    console.log(`Server Started of Port ${PORT}`)
-    connectDb()
-})
+await connectDb();
+export default app;
+
