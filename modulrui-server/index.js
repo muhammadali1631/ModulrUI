@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://modulr-ui1.vercel.app/',
     credentials: true
 }))
 
