@@ -26,6 +26,13 @@ app.use('/api/user', userRouter)
 app.use('/api/component', componentRouter)
 
 
-await connectDb();
-export default app;
+
+const PORT = process.env.PORT;
+
+
+
+app.listen(PORT, ()=>{
+    console.log(`Server Started of Port ${PORT}`)
+    connectDb()
+})
 
