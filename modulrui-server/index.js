@@ -17,6 +17,14 @@ app.use(cors({
     credentials: true
 }))
 
+app.get('/api/debug-env', (req, res) => {
+    res.json({
+        hasMongoUrl: !!process.env.MONGODB_URL,
+        mongoUrlLength: process.env.MONGODB_URL ? process.env.MONGODB_URL.length : 0,
+        nodeEnv: process.env.NODE_ENV
+    })
+})
+
 app.use(async (req, res, next) => {
     try {
         await connectDb();
@@ -26,13 +34,7 @@ app.use(async (req, res, next) => {
     }
 })
 
-app.get('/api/debug-env', (req, res) => {
-    res.json({
-        hasMongoUrl: !!process.env.MONGODB_URL,
-        mongoUrlLength: process.env.MONGODB_URL ? process.env.MONGODB_URL.length : 0,
-        nodeEnv: process.env.NODE_ENV
-    })
-})
+
 
 app.get('/',(req, res)=>{
     res.json("Hello from server")
