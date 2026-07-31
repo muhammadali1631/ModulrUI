@@ -17,6 +17,15 @@ app.use(cors({
     credentials: true
 }))
 
+app.use(async (req, res, next) => {
+    try {
+        await connectDb();
+        next();
+    } catch (error) {
+        res.status(500).json({ message: "Database connection failed" });
+    }
+})
+
 app.get('/',(req, res)=>{
     res.json("Hello from server")
 })
@@ -27,12 +36,12 @@ app.use('/api/component', componentRouter)
 
 
 
-const PORT = process.env.PORT;
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => {
+        console.log(`Server Started on Port ${PORT}`)
+        connectDb()
+    })
+}
 
-
-
-app.listen(PORT, ()=>{
-    console.log(`Server Started of Port ${PORT}`)
-    connectDb()
-})
-
+export default app;
