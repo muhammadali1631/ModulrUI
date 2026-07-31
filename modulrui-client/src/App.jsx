@@ -12,7 +12,7 @@ import axios from 'axios'
 import "./App.css";
 import FixedIcon from './components/FixedIcon'
 
-export const ServelUrl = "http://localhost:8000"
+export const ServelUrl = "https://modulr-ui.vercel.app"
 function App() {
   
   const dispatch = useDispatch()
